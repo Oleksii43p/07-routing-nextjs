@@ -15,6 +15,7 @@ export const fetchNotes = async (page: number, query?: string): Promise<NoteResp
       search: query,
       page: page,
       perPage: 12,
+      tag: tag,
     },
   });
   return response.data;
