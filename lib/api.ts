@@ -9,7 +9,11 @@ export interface NoteResponse {
   totalPages: number;
 }
 
-export const fetchNotes = async (page: number, query?: string): Promise<NoteResponse> => {
+export const fetchNotes = async (
+  page: number,
+  query?: string,
+  tag?: string
+): Promise<NoteResponse> => {
   const response = await axios.get<NoteResponse>('https://notehub-public.goit.study/api/notes', {
     params: {
       search: query,

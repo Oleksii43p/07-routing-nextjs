@@ -7,7 +7,8 @@ import { PacmanLoader } from 'react-spinners';
 import { Toaster, toast } from 'react-hot-toast';
 import { keepPreviousData } from '@tanstack/react-query';
 
-import { fetchNotes, type NoteResponse } from '@/lib/api';
+import { fetchNotes, NoteResponse } from '@/lib/api';
+
 import NoteList from '@/components/NoteList/NoteList';
 import Pagination from '@/components/Pagination/Pagination';
 import Modal from '@/components/Modal/Modal';
@@ -16,7 +17,11 @@ import SearchBox from '@/components/SearchBox/SearchBox';
 
 import css from './NotesClient.module.css';
 
-export const NotesClient = () => {
+interface NotesClientProps {
+    tag: string | undefined;
+}
+
+export const NotesClient = ({ tag }: NotesClientProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
@@ -27,8 +32,8 @@ export const NotesClient = () => {
   }, 1000);
 
   const notesQuery = useQuery<NoteResponse>({
-    queryKey: ['notes', currentPage, searchTerm],
-    queryFn: () => fetchNotes(currentPage, searchTerm),
+    queryKey: ['notes', currentPage, searchTerm, tag],
+    queryFn: () => fetchNotes(currentPage, searchTerm, tag),
     placeholderData: keepPreviousData,
   });
 
@@ -90,4 +95,4 @@ export const NotesClient = () => {
       <Toaster />
     </div>
   );
-}
+};

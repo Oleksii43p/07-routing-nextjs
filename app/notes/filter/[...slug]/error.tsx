@@ -11,4 +11,3 @@ export default function Error({ error }: ErrorProps) {
     </div>
   );
 }
-
