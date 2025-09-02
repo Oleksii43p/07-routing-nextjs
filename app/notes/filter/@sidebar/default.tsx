@@ -1,4 +1,4 @@
-import css from './sidebar.module.css';
+import css from './SidebarNotes.module.css';
 import Link from 'next/link';
 
 const tagsList: string[] = ['All', 'Todo', 'Work', 'Personal', 'Meeting', 'Shopping'];
